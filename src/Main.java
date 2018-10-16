@@ -37,7 +37,7 @@ public class Main {
             backpack.addItem(ironSword);
             ironSword.showStats();
             player.showInfo();
-
+            //asd
 
             JSONParser reader = new JSONParser();
             List<Location> locationList = reader.getLocations(pathToLocations);
