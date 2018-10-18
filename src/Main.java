@@ -1,47 +1,47 @@
 import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
+import java.lang.Enum;
 
 public class Main {
     public static void main(String[] args) {
         game:
         while (true) {
-            String pathToLocations = "/media/leonid/D/Idea/ConsGame/src/Locations.json";
-            String pathToEnemies = "/media/leonid/D/Idea/ConsGame/src/Enemies.json";
+            String pathToLocations = "src/resources/Locations.json";
+            String pathToEnemies = "src/resources/Enemies.json";
             Random random = new Random();
-
             Scanner in = new Scanner(System.in);
+
             System.out.println("New game!");
             System.out.print("Enter your name:" + "\n");
             String chosenName = in.nextLine();
-            String chosenRace;
+            Player.Race chosenRace;
             while (true) {
                 System.out.println("Choose your race:" + "\n" + "1) Human" + '\n' + "2) Orc");
                 String race = in.nextLine();
                 if (race.equals("1") || race.toLowerCase().equals("human")) {
-                    chosenRace = "human";
+                    chosenRace = Player.Race.HUMAN;
                     break;
                 }
                 if (race.equals("2") || race.toLowerCase().equals("orc")) {
-                    chosenRace = "orc";
+                    chosenRace = Player.Race.ORC;
+                    break;
+                }
+                if (race.equals("3") || race.toLowerCase().equals("gnome")) {
+                    chosenRace = Player.Race.GNOME;
                     break;
                 }
             }
             Player player = new Player(chosenRace, chosenName);
-            player.showInfo();
             Backpack backpack = new Backpack();
-            Item mirror = new Item("Mirror", 10);
-            backpack.addItem(mirror);
-            mirror.showStats();
-            Sword ironSword = new Sword("Iron Sword", 9, 100);
-            backpack.addItem(ironSword);
-            ironSword.showStats();
-            player.showInfo();
-            //asd
+            Apple apple = new Apple();
+            Pie pie = new Pie();
+
 
             JSONParser reader = new JSONParser();
             List<Location> locationList = reader.getLocations(pathToLocations);
             List<Enemy> enemyList = reader.getEnemies(pathToEnemies);
+            playerInterface.playerMainInterface(player, backpack, apple, pie);
 
             while (enemyList.size() > 0){
                 Enemy enemy = enemyList.get(random.nextInt(enemyList.size()));
@@ -57,5 +57,8 @@ public class Main {
             if (playAgain.equals("no")) {break;}
         }
     }
+
+
+
 }
 

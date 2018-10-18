@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class Level {
+class Level {
     Location location;
     Enemy enemy;
     Item item;
@@ -10,8 +10,9 @@ public class Level {
         Random random = new Random();
         int timeout = 1;
 
+        StaticMethods.pressAnyKeyToContinue();
         String[] fightAnnouncements = new String[]{player.getPlayerName() +  ", do you have enough boldness to challenge a notorious " + enemy.getName() + "?" + "\n",
-                "Let the slaughter begin!" + "\n"};
+                "Let the slaughter begin!" + "\n" + "Fight for your life!"};
         System.out.println(fightAnnouncements[random.nextInt(fightAnnouncements.length)]);
         try {
             TimeUnit.SECONDS.sleep(timeout);
@@ -38,7 +39,7 @@ public class Level {
 
             System.out.println(enemy.getName() + " inflicts " + enemy.getDmg() + " damage to " + player.getPlayerName() + "!" + "\n");
             player.setHp(player.getHp() - enemy.getDmg());
-            System.out.println("Your hp: " + player.getHp() + "      Enemy hp: " + enemy.getHp() + "\n");
+            System.out.println("Your hp: " + player.getHp() + "    Enemy hp: " + enemy.getHp() + "\n");
             if (player.getHp() <= 0) {
                 System.out.println("You lose!");
                 return false;
