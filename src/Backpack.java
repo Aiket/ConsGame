@@ -1,91 +1,143 @@
-import java.util.ArrayList;
 
 class Backpack {
-    static Apple apple;
-    static Pie pie;
-    private ArrayList<Item> stuff = new ArrayList<>();
+    static Item[] StuffItems;
 
-    void addItem(Item item) {
-        stuff.add(item);
+    Backpack(){
+        Apple apple = new Apple();
+        Pie pie = new Pie();
+        StuffItems = new Item[]{null, null, null, null, null, null, null};
+    }
+
+    int howManyItems(){
+        int i = 0;
+        for( int j = 1; j < StuffItems.length; j++){
+            if (StuffItems[j] != null) {
+                i++;
+            }
+        }
+        return i;
+    }
+    boolean isAnyItemInStuff(){
+        for(int i = 1; i < StuffItems.length; i++){
+            if (StuffItems[i] != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+    void equipAnItem(Item item, Player player, int itemNumberToRemove) {
         if (item instanceof Sword) {
-            Player.dmg += ((Sword) item).dmgBonus;
+            if(Player.activeSword == null) {
+                player.setActiveSword((Sword) item);
+                Backpack.StuffItems[itemNumberToRemove] = null;
+            }else {
+                System.out.println("Unequip your sword before equipping new one!" + "\n");
+                StaticMethods.pressAnyKeyToContinue();
+            }
         }
         if (item instanceof Armor) {
-            Player.maxHP += ((Armor) item).hpBonus;
-            Player.currentHP += ((Armor) item).hpBonus;
+            if(Player.activeArmor == null) {
+                player.setActiveArmor((Armor) item);
+                Backpack.StuffItems[itemNumberToRemove] = null;
+            }else {
+                System.out.println("Unequip your armor before equipping new one!" + "\n");
+                StaticMethods.pressAnyKeyToContinue();
+            }
         }
         if (item instanceof Trinket) {
-            Player.intellect += ((Trinket) item).intellectBonus;
+            if(Player.activeTrinket == null) {
+                player.setActiveTrinket((Trinket) item);
+                Backpack.StuffItems[itemNumberToRemove] = null;
+            }else {
+                System.out.println("Unequip your trinket before equipping new one!"+ "\n");
+                StaticMethods.pressAnyKeyToContinue();
+            }
         }
     }
-    void removeItem(Item item) {
-        stuff.remove(item);
-        if (item instanceof Sword) {
-            Player.dmg -= ((Sword) item).dmgBonus;
-        }
-        if (item instanceof Armor) {
-            Player.maxHP -= ((Armor) item).hpBonus;
-        }
-        if (item instanceof Trinket) {
-            Player.intellect -= ((Trinket) item).intellectBonus;
-        }
 
+    static void addItemInStuff(Item item) {
+        for (int i = 1; i < StuffItems.length; i++) {
+            if (StuffItems[i] == null) {
+                StuffItems[i] = item;
+                break;
+            }
+        }
     }
+
+    static void dropItem(Item item, int i) {
+        StuffItems[i] = null;
+        System.out.println("Item " + item.getName() + " has been removed from your backpack, position " + i + " is empty now" + "\n");
+    }
+
     void showContent() {
-        System.out.println("You have " + Apple.appleAmount() + " apples and " + Pie.pieAmount() + " pies." + "\n");
-        for (Item i: stuff) {
-            i.showStats();
-        }
-    }
-}
-abstract  class Food {
-    String name;
-    int amount;
-    int HPRecovery;
-
-}
-class Apple extends Food {
-    private static int amount = 0;
-    private static final int HPRecovery = 10;
-
-    void eatAnApple() {
-        if (amount > 0) {
-            Player.currentHP += HPRecovery;
-            if (Player.currentHP > Player.maxHP) {
-                Player.currentHP = Player.maxHP;
+        System.out.println("You have " + Apple.amount + " apples and " + Pie.amount + " pies." + "\n");
+        for (int i = 1; i < StuffItems.length; i++) {
+            if (StuffItems[i] != null) {
+                System.out.print(i + ") ");
+                StuffItems[i].showStats();
             }
-            amount--;
-        } else {
-            System.out.println("You have no apples!" + "\n");
         }
     }
-    void addAnApple(){
-        amount++;
-    }
-    static int appleAmount(){
-        return amount;
+
+    abstract static class Food {
+        String name;
+        static int amount;
+        static int HPRecovery;
+        int price;
     }
 
-}
-class Pie extends Food {
-    private static int amount;
-    private final int HPRecovery = 30;
+    static class Apple extends Food {
+        static int amount = 0;
+        static final int HPRecovery = 10;
+        static int price = 15;
 
-    void eatAPie() {
-        if (amount > 0) {
-            Player.currentHP += HPRecovery;
-            if (Player.currentHP > Player.maxHP) {
-                Player.currentHP = Player.maxHP;
+        static void eatAnApple() {
+            if (amount > 0) {
+                Player.currentHP += HPRecovery;
+                if (Player.currentHP > Player.maxHP) {
+                    Player.currentHP = Player.maxHP;
+                }
+                amount--;
+            } else {
+                System.out.println("You have no apples!" + "\n");
             }
-            amount--;
-        } else {
-            System.out.println("You have no pies!" + "\n");
         }
+
+        static void addAnApple() {
+            amount++;
+        }
+
+        static int appleAmount() {
+            return amount;
+        }
+        static int getPrice() { return price;}
+
     }
-    void addAPie(){
-        amount++;
-    }
-    static int pieAmount(){
-        return amount;
+
+    static class Pie extends Food {
+        static int amount;
+        static final int HPRecovery = 30;
+        static int price = 40;
+
+        static void eatAPie() {
+            if (amount > 0) {
+                Player.currentHP += HPRecovery;
+                if (Player.currentHP > Player.maxHP) {
+                    Player.currentHP = Player.maxHP;
+                }
+                amount--;
+            } else {
+                System.out.println("You have no pies!" + "\n");
+            }
+        }
+
+        static void addAPie() {
+            amount++;
+        }
+
+        static int pieAmount() {
+            return amount;
+        }
+        static int getPrice() { return price;}
     }
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 public class Enemy {
     private String name;
@@ -34,6 +35,9 @@ public class Enemy {
     public String toString() {
         return "Name: " + name + "\n" + "Hp: " + hp + "\n" + "Dmg: " + dmg + "\n" + "catchPhrases: " + catchPhrases + "\n";
     }
+}
+
+class Boss extends Enemy {
 
 }
 
