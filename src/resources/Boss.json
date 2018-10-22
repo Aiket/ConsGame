@@ -1,0 +1,6 @@
+{
+    "name": "Helicopter Boss",
+    "hp": 70,
+    "dmg": 8,
+    "catchPhrases": ["You are not prepared!", "The end is near!!!", "I am the chosen one!", "Your journey ends here!", "I am the boss!"]
+}

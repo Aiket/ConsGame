@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Overconfident Slime",
+    "hp": 10,
+    "dmg": 1,
+    "catchPhrases": ["I will be your death!", "Overconfidence is a slow and insidious killer...Oh wait", "Don't panic!"]
+  },
+  {
+    "name": "Wooden Dummy",
+    "hp": 20,
+    "dmg": 1,
+    "catchPhrases": ["Even dummy can hit back!", "Stop wasting my time!", "What are you trying to prove?"]
+  },
+  {
+    "name": "Nightmare in the flesh",
+    "hp": 4,
+    "dmg": 8,
+    "catchPhrases": ["Wake up!", "BoooOoooOooo!", "I exist!"]
+  },
+  {
+    "name": "Giant Roach",
+    "hp": 15,
+    "dmg": 2,
+    "catchPhrases": ["I will come to you this night!", "I have been starving for years!", "It will be your worst journey!"]
+  },
+  {
+    "name": "Tiny Dragon",
+    "hp": 10,
+    "dmg": 3,
+    "catchPhrases": ["Even if i am tiny, i am still a dragon!", "Feel the fire!", "Are you a dragonslayer?"]
+  },
+  {
+    "name": "Travelling Blademaster",
+    "hp": 12,
+    "dmg": 4,
+    "catchPhrases": ["Wanna take few lessons?", "I came first to this dungeon!", "Leave this loot to me!"]
+  },
+  {
+    "name": "Helicopter Mechanic",
+    "hp": 15,
+    "dmg": 3,
+    "catchPhrases": ["Legends says there is a helicopter boss in this lands", "There is no easter eggs! Get out!", "Where is my instrument..."]
+  },
+  {
+    "name": "Game Designer",
+    "hp": 17,
+    "dmg": 2,
+    "catchPhrases": ["Ohh, this place is horrible!", "Just kill me!", "Enemies is very unbalanced, dont you find?"]
+  },
+  {
+    "name": "DemiGod",
+    "hp": 16,
+    "dmg": 3,
+    "catchPhrases": ["You are lucky that I forgot about morning stretches today!", "Watch and learn!", "Get away mortal!"]
+  },
+  {
+    "name": "Spiteful Teaser",
+    "hp": 24,
+    "dmg": 2,
+    "catchPhrases": ["Is this all you can do?", "Pathetic creature!", "Even a wimp like you can win once in a year"]
+  },
+  {
+    "name": "Siberian Bear",
+    "hp": 20,
+    "dmg": 3,
+    "catchPhrases": ["Arghrghrghr!", "RRrrRRrrr!", "Rrrhhrhrrrr!"]
+  },
+  {
+    "name": "Fearful Goblin",
+    "hp": 50,
+    "dmg": 0,
+    "catchPhrases": ["Try to catch me!", "I am running away!", "Leave me alone!"]
+  }
+]
